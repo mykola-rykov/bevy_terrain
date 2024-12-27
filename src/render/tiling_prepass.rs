@@ -195,6 +195,7 @@ impl SpecializedComputePipeline for TilingPrepassPipelines {
             shader,
             shader_defs,
             entry_point,
+            zero_initialize_workgroup_memory: true,
         }
     }
 }

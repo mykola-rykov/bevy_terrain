@@ -4,8 +4,8 @@ use bevy::{
     render::{
         render_asset::RenderAssetUsages,
         render_resource::{Extent3d, TextureDimension, TextureFormat},
-        texture::TextureError,
     },
+    image::TextureError
 };
 use bytemuck::cast_slice;
 use std::io::Cursor;

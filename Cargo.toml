@@ -15,7 +15,7 @@ repository = "https://github.com/kurtkuehnert/bevy_terrain"
 high_precision = ["dep:big_space"]
 
 [dependencies]
-bevy = "0.14.0" #{ git="https://github.com/bevyengine/bevy/", branch="main" }
+bevy = "0.15.0" #{ git="https://github.com/bevyengine/bevy/", branch="main" }
 ndarray = "0.15"
 itertools = "0.12"
 image = "0.25"

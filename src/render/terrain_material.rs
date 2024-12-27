@@ -26,9 +26,10 @@ use bevy::{
         },
         render_resource::*,
         renderer::RenderDevice,
-        texture::{BevyDefault, GpuImage},
+        texture::GpuImage,
         Render, RenderApp, RenderSet,
     },
+    image::BevyDefault,
 };
 use std::{hash::Hash, marker::PhantomData};
 
@@ -356,6 +357,7 @@ where
                 mask: !0,
                 alpha_to_coverage_enabled: false,
             },
+            zero_initialize_workgroup_memory: true,
         }
     }
 }
@@ -371,7 +373,7 @@ pub(crate) type DrawTerrain<M> = (
     DrawTerrainCommand,
 );
 
-/// Queses all terrain entities for rendering via the terrain pipeline.
+/// Queues all terrain entities for rendering via the terrain pipeline.
 #[allow(clippy::too_many_arguments)]
 pub(crate) fn queue_terrain<M: Material>(
     draw_functions: Res<DrawFunctions<Opaque3d>>,

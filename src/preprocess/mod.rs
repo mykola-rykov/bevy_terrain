@@ -134,6 +134,7 @@ impl SpecializedComputePipeline for TerrainPreprocessPipelines {
             shader,
             shader_defs,
             entry_point,
+            zero_initialize_workgroup_memory: true,
         }
     }
 }

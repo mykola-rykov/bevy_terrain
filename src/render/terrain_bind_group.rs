@@ -197,7 +197,7 @@ impl TerrainData {
                     .unwrap_or(transform.affine()))
                     .into(),
             };
-            let mesh_uniform = MeshUniform::new(&mesh_transforms, None);
+            let mesh_uniform = MeshUniform::new(&mesh_transforms, 0, None);
 
             let terrain_data = terrain_data.get_mut(&terrain).unwrap();
             terrain_data.mesh_buffer.set_value(mesh_uniform);

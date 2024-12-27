@@ -276,7 +276,7 @@ pub(crate) fn debug_lighting(mut commands: Commands) {
 
 pub fn debug_window(mut window: Query<&mut Window, With<PrimaryWindow>>) {
     let mut window = window.single_mut();
-    window.cursor.visible = false;
+    window.cursor_options.visible = false;
 }
 
 #[derive(Resource, Default)]
@@ -300,7 +300,7 @@ fn finish_loading_images(
     mut images: ResMut<Assets<Image>>,
 ) {
     loading_images.0.retain(|&(id, dimension, format)| {
-        if asset_server.load_state(id) == LoadState::Loaded {
+        if asset_server.load_state(id).is_loaded() {
             let image = images.get_mut(id).unwrap();
             image.texture_descriptor.dimension = dimension;
             image.texture_descriptor.format = format;
