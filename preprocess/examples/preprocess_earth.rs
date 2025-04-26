@@ -4,12 +4,12 @@ use gdal::raster::GdalDataType;
 
 fn main() {
     let args = Cli {
-        src_path: vec!["assets/source_data/gebco_earth.tif".into()],
+        src_path: vec!["assets/examples/source_data/gebco_earth.tif".into()],
         terrain_path: "assets/terrains/earth".into(),
         temp_path: None,
         overwrite: true,
         no_data: PreprocessNoData::Source,
-        data_type: PreprocessDataType::DataType(GdalDataType::Float32),
+        data_type: PreprocessDataType::DataType(GdalDataType::UInt16),
         fill_radius: 16.0,
         create_mask: true,
         lod_count: None,
@@ -17,7 +17,7 @@ fn main() {
         texture_size: 512,
         border_size: 2,
         mip_level_count: 1,
-        format: AttachmentFormat::R32F,
+        format: AttachmentFormat::R16U,
     };
 
     let (src_dataset, mut context) = PreprocessContext::from_cli(args).unwrap();
@@ -25,12 +25,12 @@ fn main() {
     preprocess(src_dataset, &mut context);
 
     let args = Cli {
-        src_path: vec!["assets/source_data/true_marble.tif".into()],
+        src_path: vec!["assets/examples/source_data/true_marble.tif".into()],
         terrain_path: "assets/terrains/earth".into(),
         temp_path: None,
         overwrite: true,
         no_data: PreprocessNoData::NoData(0.0),
-        data_type: PreprocessDataType::DataType(GdalDataType::UInt8),
+        data_type: PreprocessDataType::DataType(GdalDataType::UInt16),
         fill_radius: 16.0,
         create_mask: false,
         lod_count: Some(4),
@@ -38,7 +38,7 @@ fn main() {
         texture_size: 512,
         border_size: 2,
         mip_level_count: 1,
-        format: AttachmentFormat::Rgb8U,
+        format: AttachmentFormat::R16U,
     };
 
     let (src_dataset, mut context) = PreprocessContext::from_cli(args).unwrap();

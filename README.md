@@ -35,6 +35,25 @@ Use the `A` Key to toggle between the custom material and the albedo attachment.
 Before running the examples you have to preprocess the terrain data this may take a while.
 Once the data is preprocessed you can disable it by commenting out the preprocess line.
 
+## How to run examples
+
+1. You need some very specific source TIFF image files which will be used to build the exact shape & colours of your 3D surfaces.
+   The format, dimensions, and depth of the source TIFF image files need to be in sync with the preprocessor code (for example, with the code in `preprocess/examples/preprocess_spherical.rs`).
+   Otherwise, you'll get the `Pixel data, size and format have to match` error.
+   _Somehow_ working example source TIFF image files are located at `assets/source_data`.
+
+2. The source TIFF image files need to be preprocessed _before_ you can run a `bevy_terrain` example itself.
+   I.e., you _have to_ run the preprocessor if this is the first time when you're about to run a `bevy_terrain` example:
+
+`cargo run --package bevy_terrain_preprocess --example preprocess_earth`
+
+The preprocessor needs to be called every time when the source TIFF image files are updated.
+If there are no changes to the source TIFF files and a previous preprocessor run successfully generated some valid `assets/terrains/*` files, then there is no need to run the preprocessor again.
+
+3. Finally, to run a `bevy_terrain` example, use a command like:
+
+`cargo run --example spherical --features="high_precision bevy/embedded_watcher"`
+
 ## Documentation
 
 The `docs` folder contains a
@@ -98,8 +117,8 @@ The examples use the following demo datasets:
 
 Bevy Terrain source code (this excludes the datasets in the assets directory) is dual-licensed under either
 
-* MIT License (LICENSE-MIT or http://opensource.org/licenses/MIT)
-* Apache License, Version 2.0 (LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0)
+- MIT License (LICENSE-MIT or http://opensource.org/licenses/MIT)
+- Apache License, Version 2.0 (LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0)
 
 at your option.
 
