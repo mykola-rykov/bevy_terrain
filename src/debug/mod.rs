@@ -107,7 +107,7 @@ pub fn extract_debug(mut debug: ResMut<DebugTerrain>, extracted_debug: Extract<R
 }
 
 pub fn toggle_debug(input: Res<ButtonInput<KeyCode>>, mut debug: ResMut<DebugTerrain>) {
-    if input.just_pressed(KeyCode::KeyW) {
+    if input.pressed(KeyCode::ControlLeft) && input.just_pressed(KeyCode::KeyW) {
         debug.wireframe = !debug.wireframe;
         println!(
             "Toggled the wireframe view {}.",
@@ -177,7 +177,7 @@ pub fn toggle_debug(input: Res<ButtonInput<KeyCode>>, mut debug: ResMut<DebugTer
             if debug.tile_tree_lod { "on" } else { "off" }
         )
     }
-    if input.just_pressed(KeyCode::KeyS) {
+    if input.pressed(KeyCode::ControlLeft) && input.just_pressed(KeyCode::KeyS) {
         debug.lighting = !debug.lighting;
         println!(
             "Toggled the lighting {}.",
@@ -279,7 +279,10 @@ pub fn update_view_parameter(
             );
         }
 
-        if input.just_pressed(KeyCode::KeyX) && tile_tree.grid_size > 2 {
+        if input.pressed(KeyCode::ControlLeft)
+            && input.just_pressed(KeyCode::KeyX)
+            && tile_tree.grid_size > 2
+        {
             tile_tree.grid_size -= 2;
             println!("Decreased the grid size to {}.", tile_tree.grid_size);
         }

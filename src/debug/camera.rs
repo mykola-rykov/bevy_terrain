@@ -88,25 +88,29 @@ pub fn debug_camera_controller(
     let mut acceleration = 0.0;
 
     keyboard
-        .pressed(KeyCode::ArrowLeft)
+        .pressed(KeyCode::KeyA)
         .then(|| translation_direction.x -= 1.0);
     keyboard
-        .pressed(KeyCode::ArrowRight)
+        .pressed(KeyCode::KeyD)
         .then(|| translation_direction.x += 1.0);
     keyboard
-        .pressed(KeyCode::PageUp)
+        .pressed(KeyCode::Space)
         .then(|| translation_direction.y += 1.0);
     keyboard
-        .pressed(KeyCode::PageDown)
+        .pressed(KeyCode::KeyX)
         .then(|| translation_direction.y -= 1.0);
     keyboard
-        .pressed(KeyCode::ArrowUp)
+        .pressed(KeyCode::KeyW)
         .then(|| translation_direction.z -= 1.0);
     keyboard
-        .pressed(KeyCode::ArrowDown)
+        .pressed(KeyCode::KeyS)
         .then(|| translation_direction.z += 1.0);
-    keyboard.pressed(KeyCode::Home).then(|| acceleration -= 1.0);
-    keyboard.pressed(KeyCode::End).then(|| acceleration += 1.0);
+    keyboard
+        .pressed(KeyCode::ShiftRight)
+        .then(|| acceleration -= 1.0);
+    keyboard
+        .pressed(KeyCode::ShiftLeft)
+        .then(|| acceleration += 1.0);
 
     translation_direction = transform.rotation.as_dquat() * translation_direction;
 
